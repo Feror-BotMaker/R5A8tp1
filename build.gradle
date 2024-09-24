@@ -1,20 +1,31 @@
 plugins {
-	id 'java'
-	id 'idea' // optional (to generate IntelliJ IDEA project files)
+    id 'java'
+    id 'idea' // optional (to generate IntelliJ IDEA project files)
+    id 'jacoco' // optional (to generate code coverage reports)
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	testImplementation(platform('org.junit:junit-bom:5.10.0'))
-	testImplementation('org.junit.jupiter:junit-jupiter')
+    testImplementation(platform('org.junit:junit-bom:5.10.0'))
+    testImplementation('org.junit.jupiter:junit-jupiter')
 }
 
 test {
-	useJUnitPlatform()
-	testLogging {
-		events "passed", "skipped", "failed"
-	}
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        //par défaut html.outputLocation=layout.buildDirectory.dir('reports/jacoco/test') // mais modifiable, comme par exemple :
+        html.outputLocation = layout.projectDirectory.dir('reports/jacoco/test')
+    }
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Calculator.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">junit5-jupiter-starter-gradle</a> &gt; <a href="index.source.html" class="el_package">calculator</a> &gt; <span class="el_source">Calculator.java</span></div><h1>Calculator.java</h1><pre class="source lang-java linenums">package calculator;
+
+import java.util.HashSet;
+import java.util.Set;
+
+<span class="nc" id="L6">public class Calculator {</span>
+    public static int add(int opG, int opD) {
+<span class="fc bfc" id="L8" title="All 8 branches covered.">        if ((opD &gt; 0 &amp;&amp; opG &gt; Integer.MAX_VALUE - opD) ||</span>
+                (opD &lt; 0 &amp;&amp; opG &lt; Integer.MIN_VALUE - opD)) {
+<span class="fc" id="L10">            throw new ArithmeticException(&quot;Débordement lors de l'addition&quot;);</span>
+        }
+
+<span class="fc" id="L13">        return opG + opD;</span>
+    }
+
+    public static int divide(int opG, int opD) {
+<span class="fc bfc" id="L17" title="All 2 branches covered.">        if (opD == 0) {</span>
+<span class="fc" id="L18">            throw new ArithmeticException(&quot;Division par zéro interdite&quot;);</span>
+        }
+<span class="fc" id="L20">        return opG / opD;</span>
+    }
+
+    public static Set&lt;Integer&gt; ensembleChiffres(int pNombre) {
+<span class="fc" id="L24">        Set&lt;Integer&gt; chiffres = new HashSet&lt;&gt;();</span>
+<span class="fc" id="L25">        pNombre = Math.abs(pNombre); // Prendre la valeur absolue du nombre pour ignorer les signes négatifs</span>
+
+        // Si le nombre est 0, ajouter simplement 0 à l'ensemble
+<span class="pc bpc" id="L28" title="1 of 2 branches missed.">        if (pNombre == 0) {</span>
+<span class="nc" id="L29">            chiffres.add(0);</span>
+        }
+
+        // Extraire chaque chiffre du nombre et l'ajouter à l'ensemble
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        while (pNombre &gt; 0) {</span>
+<span class="fc" id="L34">            chiffres.add(pNombre % 10);</span>
+<span class="fc" id="L35">            pNombre /= 10;</span>
+        }
+
+<span class="fc" id="L38">        return chiffres;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
