@@ -33,4 +33,25 @@ class CalculatorTest {
     void ensembleChiffresWithParams() {
         assertEquals(Set.of(6, 7, 9), Calculator.ensembleChiffres(7679));
     }
+
+    @Test
+    void testAddOverflow() {
+        // Test d'un débordement positif
+        assertThrows(ArithmeticException.class, () -> {
+            Calculator.add(Integer.MAX_VALUE, 1);
+        }, "Débordement lors de l'addition");
+
+        // Test d'un débordement négatif
+        assertThrows(ArithmeticException.class, () -> {
+            Calculator.add(Integer.MIN_VALUE, -1);
+        }, "Débordement lors de l'addition");
+    }
+
+    @Test
+    void testDivideByZero() {
+        // Test de la division par zéro
+        assertThrows(ArithmeticException.class, () -> {
+            Calculator.divide(10, 0);
+        }, "Division par zéro interdite");
+    }
 }

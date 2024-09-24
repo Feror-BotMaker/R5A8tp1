@@ -5,10 +5,18 @@ import java.util.Set;
 
 public class Calculator {
     public static int add(int opG, int opD) {
+        if ((opD > 0 && opG > Integer.MAX_VALUE - opD) ||
+                (opD < 0 && opG < Integer.MIN_VALUE - opD)) {
+            throw new ArithmeticException("Débordement lors de l'addition");
+        }
+
         return opG + opD;
     }
 
     public static int divide(int opG, int opD) {
+        if (opD == 0) {
+            throw new ArithmeticException("Division par zéro interdite");
+        }
         return opG / opD;
     }
 
