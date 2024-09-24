@@ -29,3 +29,15 @@ jacocoTestReport {
         html.outputLocation = layout.projectDirectory.dir('reports/jacoco/test')
     }
 }
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.78 // seuil choisi (80% de couverture)
+            }
+        }
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification
