@@ -6,6 +6,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
@@ -25,5 +27,10 @@ class CalculatorTest {
     @Test
     void divide() {
         assertEquals(2, Calculator.divide(6, 3));
+    }
+
+    @Test
+    void ensembleChiffresWithParams() {
+        assertEquals(Set.of(6, 7, 9), Calculator.ensembleChiffres(7679));
     }
 }
